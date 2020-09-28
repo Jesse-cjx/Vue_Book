@@ -1,9 +1,11 @@
 const routerNav= () => import("@/views/routerDemo/routerNav");
 const namedViews=()=> import("@/views/routerDemo/namedViews");
-const redirectAndAlias=()=>import("@/views/routerDemo/redirectAndAlias")
+const redirectAndAlias=()=>import("@/views/routerDemo/redirectAndAlias");
+const dynamicMatching=()=>import("@/views/routerDemo/dynamicMatching");
 const destination1 = () => import("@/views/routerDemo/destination1");
 const destination2 = () => import("@/views/routerDemo/destination2");
 const destination3 = () => import("@/views/routerDemo/destination3");
+const destination4 = () => import("@/views/routerDemo/destination4");
 export default [
   {//编程式的导航
     path: "/routerNav",
@@ -55,6 +57,18 @@ export default [
         /*redirect : function () {
           return {name:'/destination3'}
         }*/
+      }
+    ]
+  },
+  {
+
+    path:"/dynamicMatching",
+    name:"dynamicMatching",
+    component:dynamicMatching,
+    children:[
+      {//动态路由配置
+        path:"/destination4/:id/:text",//id是变量名，可以修改,可多段动态
+        component:destination4,
       }
     ]
   }

@@ -5,7 +5,7 @@
       <ul class="nav">
         <li>
           <h4>Vue Router</h4>
-          <p><router-link to="">动态路由</router-link></p>
+          <p><router-link to="/dynamicMatching">动态路由匹配</router-link></p>
           <p><router-link to="/routerNav">编程式导航</router-link></p>
           <p><router-link to="/namedViews">命名视图</router-link></p>
           <p><router-link to="/redirectAndAlias">重定向和别名</router-link></p>
