@@ -1,15 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
+
+/*路由配置*/
+const allContents = () => import("@/views/contents/allContents");
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "allContents",
+    component: allContents,
+    children:[
+        ...require('./routerDemoRouter').default,
+    ]
   },
+    //项目自带的
   {
     path: "/about",
     name: "About",
@@ -18,7 +24,13 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+  },
+  {
+    path: "/Home",
+    name: "Home",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/Home.vue")
+  },
 ];
 
 const router = new VueRouter({
