@@ -3,13 +3,13 @@
     <h3>vue学习项目</h3>
     <div class="main-body">
       <ul class="nav">
-        <li>
-          <h4>Vue Router</h4>
-          <p><router-link to="/dynamicMatching">动态路由匹配</router-link></p>
-          <p><router-link to="/routerNav">编程式导航</router-link></p>
-          <p><router-link to="/namedViews">命名视图</router-link></p>
-          <p><router-link to="/redirectAndAlias">重定向和别名</router-link></p>
-          <p><router-link to="">路由组件传参</router-link></p>
+        <li :key="index" v-for="(item,index) in navList" @click="onShow(index)">
+          <h4>{{item.title}}</h4>
+          <div v-show="item.showFlag">
+            <p v-for="(items,contentIndex) in item.navContent" :key="contentIndex">
+              <router-link @click.native.stop="stopShow" :to="items.url">{{items.title}}</router-link>
+            </p>
+          </div>
         </li>
       </ul>
       <div class="realize">
@@ -21,7 +21,38 @@
 
 <script>
   export default {
-    name: "allContents"
+    name: "allContents",
+    data() {
+      return {
+        navList: [
+          {
+            title: '路由',
+            showFlag: false,
+            navContent: [
+              {title: '动态路由匹配', url: '/dynamicMatching'},
+              {title: '编程式导航', url: '/routerNav'},
+              {title: '命名视图', url: '/namedViews'},
+              {title: '重定向和别名', url: '/redirectAndAlias'},
+            ]
+          },
+          {
+            title: '基础',
+            showFlag: false,
+            navContent: [
+              {title: '模板语法', url: '/baseDemo/vueSyntax'},
+            ]
+          },
+        ]
+      }
+    },
+    methods:{
+      onShow(val){
+        this.navList[val].showFlag=!this.navList[val].showFlag;
+      },
+      stopShow(){
+        console.log('触发了事件并阻止冒泡')
+      },
+    },
   };
 </script>
 
@@ -46,6 +77,10 @@
 
     h4 {
       margin 10px 0 0 0
+    }
+    h4:hover{
+      cursor pointer
+      color blue
     }
 
     p {
