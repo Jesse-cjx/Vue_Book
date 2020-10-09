@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// import XXX from "@/router/routerDemoRouter";
 
 Vue.use(VueRouter);
 
@@ -11,7 +12,9 @@ const routes = [
     name: "allContents",
     component: () => import("@/views/contents/allContents"),
     children:[
+        // ...XXX,
         ...require('@/router/routerDemoRouter').default,
+
         ...require('./baseDemoRouter').default,
     ]
   },
